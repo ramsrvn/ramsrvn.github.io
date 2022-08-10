@@ -4,8 +4,7 @@ title: Projects
 permalink: /projects/
 ---
 
-This page contains information on a few selected projects. Anything not listed here are private projects.
-
+This page contains information on a few selected projects. 
 ## Software Complexity Analyzer
 
 It is an Eclipse plugin developed to measure the complexity of software, a linear time algorithm was developed to count the number of paths in the software. In the past, polynomial algorithms were used.
