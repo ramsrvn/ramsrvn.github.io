@@ -7,18 +7,17 @@ permalink: /projects/
 This page contains information on a few selected projects. Anything not listed here are private projects.
 
 ## Software Complexity Analyzer
-<a href="https://jreframeworker.com/"><img src="https://jreframeworker.com/images/JReFrameworker.png" alt="JReFrameworker" width="48" height="55" /></a>
 
-[JReFrameworker](https://jreframeworker.com/) is an Eclipse plugin developed to measure the complexity of software, a linear time algorithm was developed to count the number of paths in the software. In the past, polynomial algorithms were used.
+It is an Eclipse plugin developed to measure the complexity of software, a linear time algorithm was developed to count the number of paths in the software. In the past, polynomial algorithms were used.
 
 ## Loop ToolBox
 
-[LoopToolBox](https://github.com/kcsl/LoopModel)is an Eclipse plugin for analyzing Linux code, specifically to classify loops from security perspective in Linux. As a result, the loops in the software can been categorized based on the lock/unlock and memory allocation/deallocation behavior. Currently it supports only for the software written in C and Java
+[LoopToolBox](https://github.com/kcsl/LoopModel) is an Eclipse plugin for analyzing Linux code, specifically to classify loops from security perspective in Linux. As a result, the loops in the software can been categorized based on the lock/unlock and memory allocation/deallocation behavior. Currently it supports only for the software written in C and Java
 
 
 ## Memory Leak Analyzer
 
-[Memory Leak Analyzer] is an Eclipse plugin developed in Java to investigate memory leaks in large software applications written in C and Java. As a result of the tool, critical bugs were discovered in the Apache POI, Kerberos, and Linux systems
+It is an Eclipse plugin developed in Java to investigate memory leaks in large software applications written in C and Java. As a result of the tool, critical bugs were discovered in the Apache POI, Kerberos, and Linux systems
 
 
 ## Apache DynaDoc:
