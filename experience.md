@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Publications
+title: Experience
 permalink: /experience/
 ---
 {::options auto_ids="false" /}
