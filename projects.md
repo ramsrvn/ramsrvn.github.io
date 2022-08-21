@@ -31,4 +31,5 @@ It is an Eclipse plugin developed in Java to investigate memory leaks in large s
 I've contributed to build some APIs for plugins of [Atlas](http://www.ensoftcorp.com/atlas/) (a program analysis framework).
 
 - [Toolbox Commons](https://ensoftcorp.github.io/toolbox-commons/) - A set of common utilities for program analysis using Atlas, worked on APIs.
+- [ICFG PCG](https://github.com/EnSoftCorp/pcg-toolbox/tree/ICFG-IPCG) - A toolbox to get inter-procedural projected control flow graph. The projected control flow graph (PCG) is a projection of the control flow graph (CFG) to retain only the relevant execution behaviors and elide duplicate paths with identical execution behavior.
 
