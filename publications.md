@@ -16,3 +16,8 @@ This page contains a paper publication.
 <div class="abstract"><p>This 2018 DOCGEN Challenge paper describes DynaDoc, an automated documentation system for on-demand context-specific documentation. A key novelty is the use of graph database technology with an eXtensible Common Software Graph Schema (XCSG). Using XCSG-based query language, DynaDoc can mine efficiently and accurately a variety of program artifacts and graph abstractions from millions of lines of code to provide semantically rich documentation. DynaDoc leverages the extensibility of XCSG to link program artifacts to supplementary information such as commits and issues.
 </div>
 
+
+- **Catastrophic Cyber-Physical Malware** a book Chapter in the Springer International Publishing, 2018. <br/>
+**Tutorial:**&nbsp;[<a href="https://link.springer.com/chapter/10.1007/978-3-319-97643-3_7"]
+ <div class="abstract"><p>With the advent of highly sophisticated cyber-physical malware (CPM) such as Industroyer, a cyberattack could be as destructive as the terrorist attack on 9/11, and it would virtually paralyze the nation. We discuss as the major risks the vulnerability of: telecommunication infrastructure, industrial control systems (ICS), and mission-critical software.
+</div>
