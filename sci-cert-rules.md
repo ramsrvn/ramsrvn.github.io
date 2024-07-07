@@ -1,8 +1,10 @@
 ---
 layout: page
-title: SCI CERT Rules (Sorted by Severity)
+title: SCI CERT Rules
 permalink: /sci-cert-rules/
 ---
+
+## SCI CERT RULES (Sorted by Severity)
 
 <div id="csv-table-container" style="overflow-x: auto; width: 100%;">
     <table id="data-table">
@@ -67,6 +69,7 @@ permalink: /sci-cert-rules/
                 pageLink.href = '#';
                 pageLink.textContent = i;
                 pageLink.classList.add('page-link');
+                pageLink.dataset.page = i;
                 if (i === currentPage) {
                     pageLink.classList.add('active');
                 }
@@ -88,7 +91,7 @@ permalink: /sci-cert-rules/
     table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: fixed;
+        table-layout: fixed; /* Ensures table cells take equal space */
     }
     th, td {
         border: 1px solid #ddd;
@@ -101,10 +104,11 @@ permalink: /sci-cert-rules/
     }
     .severity-high {
         background-color: #FA8072; /* Salmon */
-        color: white;
+        color: black;
     }
     .severity-medium {
         background-color: #FFA500; /* Tangerine */
+        color: black;
     }
     .severity-low {
         background-color: #F0FFF0; /* HoneyDew */
@@ -115,21 +119,19 @@ permalink: /sci-cert-rules/
         text-decoration: none;
         color: #007bff;
         padding: 5px 10px;
+        border-radius: 5px;
     }
     .page-link.active {
         font-weight: bold;
-        color: #0056b3;
+        color: white;
     }
-    .severity-high .page-link {
+    .page-link[data-page="L1"].active {
         background-color: #FA8072; /* Salmon */
-        color: black;
     }
-    .severity-medium .page-link {
+    .page-link[data-page="L2"].active {
         background-color: #FFA500; /* Tangerine */
-        color: black;
     }
-    .severity-low .page-link {
+    .page-link[data-page="L3"].active {
         background-color: #F0FFF0; /* HoneyDew */
-        color: black;
     }
 </style>
