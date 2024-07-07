@@ -17,8 +17,6 @@ The use of secure coding standards defines a proscriptive set of rules and recom
 
 ### SCI CERT RULES (Sorted by Severity)
 
-Category	Description	Rule	Severity	Likelihood	Remediation Cost	Priority	Level
-
 <div id="csv-table-container">
     <table id="data-table">
         <thead>
@@ -39,7 +37,7 @@ Category	Description	Rule	Severity	Likelihood	Remediation Cost	Priority	Level
 
 <script>
     async function loadCSV() {
-        const response = await fetch('/sci-cert/sci-cert-coding-standard-rules.csv');
+        const response = await fetch('sci-cert-coding-standard-rules.csv');
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
         const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
