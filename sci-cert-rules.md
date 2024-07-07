@@ -6,7 +6,7 @@ permalink: /sci-cert-rules/
 
 ## SCI CERT RULES (Sorted by Severity)
 
-<div id="csv-table-container" style="overflow-x: auto; width: 100%;">
+<div id="csv-table-container" style="overflow-x: auto;">
     <table id="data-table">
         <thead>
             <tr>
@@ -22,8 +22,8 @@ permalink: /sci-cert-rules/
         </thead>
         <tbody></tbody>
     </table>
+    <div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 </div>
-<div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 
 <script>
     async function loadCSV() {
@@ -41,7 +41,7 @@ permalink: /sci-cert-rules/
             table.innerHTML = ''; // Clear existing rows
 
             const start = (page - 1) * rowsPerPage + 1; // Skip header row
-            const end = Math.min(start + rowsPerPage, rows.length);
+            const end = start + rowsPerPage;
             const pageRows = rows.slice(start, end);
 
             pageRows.forEach(row => {
@@ -69,7 +69,6 @@ permalink: /sci-cert-rules/
                 pageLink.href = '#';
                 pageLink.textContent = i;
                 pageLink.classList.add('page-link');
-                pageLink.dataset.page = i;
                 if (i === currentPage) {
                     pageLink.classList.add('active');
                 }
@@ -90,8 +89,9 @@ permalink: /sci-cert-rules/
 <style>
     table {
         width: 100%;
+        min-width: 800px; /* Ensures table fits page width but allows scrolling */
         border-collapse: collapse;
-        table-layout: fixed; /* Ensures table cells take equal space */
+        table-layout: auto; /* Ensure width of cell matches content */
     }
     th, td {
         border: 1px solid #ddd;
@@ -118,20 +118,9 @@ permalink: /sci-cert-rules/
         margin: 0 5px;
         text-decoration: none;
         color: #007bff;
-        padding: 5px 10px;
-        border-radius: 5px;
     }
     .page-link.active {
         font-weight: bold;
-        color: white;
-    }
-    .page-link[data-page="L1"].active {
-        background-color: #FA8072; /* Salmon */
-    }
-    .page-link[data-page="L2"].active {
-        background-color: #FFA500; /* Tangerine */
-    }
-    .page-link[data-page="L3"].active {
-        background-color: #F0FFF0; /* HoneyDew */
+        color: #0056b3;
     }
 </style>
