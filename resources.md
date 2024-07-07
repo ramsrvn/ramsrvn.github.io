@@ -71,14 +71,15 @@ The use of secure coding standards defines a proscriptive set of rules and recom
         background-color: #f2f2f2;
     }
     .severity-high {
-        background-color: Salmon;
-        color: white;
+        background-color: #FA8072; /* Salmon */
+        color: black;
     }
     .severity-medium {
-        background-color: Tangerine;
+        background-color: #FFA500; /* Tangerine */
+        color: black;
     }
     .severity-low {
-        background-color: HoneyDew;
+        background-color: #F0FFF0; /* HoneyDew */
         color: black;
     }
 </style>
