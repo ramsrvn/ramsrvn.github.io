@@ -8,7 +8,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed; /* Ensure all columns have fixed width */
+            table-layout: fixed; /* Ensure all columns have equal width */
         }
         th, td {
             border: 1px solid #ddd;
@@ -45,6 +45,7 @@
             color: #0056b3;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <h1>SCI CERT RULES (Sorted by Severity)</h1>
@@ -70,64 +71,70 @@
     <script>
         async function loadCSV() {
             const response = await fetch('/sci-cert/sci-cert-coding-standard-rules.csv');
-            const data = await response.text();
-            const rows = data.split('\n').map(row => row.split(','));
+            const csvData = await response.text();
+            
+            Papa.parse(csvData, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    const rows = results.data;
 
-            let currentPage = 1;
-            const rowsPerPage = 10;
-            const totalRows = rows.length - 1; // Exclude header row
-            const totalPages = Math.ceil(totalRows / rowsPerPage);
+                    let currentPage = 1;
+                    const rowsPerPage = 10;
+                    const totalRows = rows.length;
+                    const totalPages = Math.ceil(totalRows / rowsPerPage);
 
-            function displayPage(page) {
-                const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
-                table.innerHTML = ''; // Clear existing rows
+                    function displayPage(page) {
+                        const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+                        table.innerHTML = ''; // Clear existing rows
 
-                const start = (page - 1) * rowsPerPage + 1; // Skip header row
-                const end = Math.min(start + rowsPerPage, rows.length);
-                const pageRows = rows.slice(start, end);
+                        const start = (page - 1) * rowsPerPage;
+                        const end = Math.min(start + rowsPerPage, rows.length);
+                        const pageRows = rows.slice(start, end);
 
-                pageRows.forEach((row, rowIndex) => {
-                    if (row.length < 8) {
-                        console.warn(`Skipping row ${rowIndex + start}: insufficient columns`);
-                        return;
+                        pageRows.forEach(row => {
+                            const newRow = table.insertRow();
+                            let severityClass = '';
+                            if (row.Level.trim() === 'L1') severityClass = 'severity-high';
+                            if (row.Level.trim() === 'L2') severityClass = 'severity-medium';
+                            if (row.Level.trim() === 'L3') severityClass = 'severity-low';
+                            if (severityClass) newRow.classList.add(severityClass);
+                            Object.values(row).forEach(cell => {
+                                const newCell = newRow.insertCell();
+                                newCell.textContent = cell;
+                            });
+                        });
+
+                        displayPagination();
                     }
-                    const newRow = table.insertRow();
-                    let severityClass = '';
-                    if (row[7] && row[7].trim() === 'L1') severityClass = 'severity-high';
-                    if (row[7] && row[7].trim() === 'L2') severityClass = 'severity-medium';
-                    if (row[7] && row[7].trim() === 'L3') severityClass = 'severity-low';
-                    if (severityClass) newRow.classList.add(severityClass);
-                    row.forEach((cell, cellIndex) => {
-                        const newCell = newRow.insertCell();
-                        newCell.textContent = cell;
-                    });
-                });
 
-                displayPagination();
-            }
+                    function displayPagination() {
+                        const pagination = document.getElementById('pagination');
+                        pagination.innerHTML = '';
 
-            function displayPagination() {
-                const pagination = document.getElementById('pagination');
-                pagination.innerHTML = '';
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const pageLink = document.createElement('a');
-                    pageLink.href = '#';
-                    pageLink.textContent = i;
-                    pageLink.classList.add('page-link');
-                    if (i === currentPage) {
-                        pageLink.classList.add('active');
+                        for (let i = 1; i <= totalPages; i++) {
+                            const pageLink = document.createElement('a');
+                            pageLink.href = '#';
+                            pageLink.textContent = i;
+                            pageLink.classList.add('page-link');
+                            if (i === currentPage) {
+                                pageLink.classList.add('active');
+                            }
+                            pageLink.addEventListener('click', (event) => {
+                                event.preventDefault();
+                                currentPage = i;
+                                displayPage(currentPage);
+                            });
+                            pagination.appendChild(pageLink);
+                        }
                     }
-                    pageLink.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        currentPage = i;
-                        displayPage(currentPage);
-                    });
-                    pagination.appendChild(pageLink);
+
+                    displayPage(currentPage);
+                },
+                error: function(error) {
+                    console.error('Error parsing CSV:', error);
                 }
-            }
-
-            displayPage(currentPage);
+            });
         }
         loadCSV().catch(error => console.error('Error loading CSV:', error));
     </script>
