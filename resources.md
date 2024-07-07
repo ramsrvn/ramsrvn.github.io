@@ -40,24 +40,22 @@ The use of secure coding standards defines a proscriptive set of rules and recom
         const response = await fetch('/sci-cert/data.csv');
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
-
         const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
-        
         rows.forEach((row, rowIndex) => {
             if (rowIndex === 0) return; // Skip header row
             const newRow = table.insertRow();
-            let severityClass = '';
-            if (row[7] === 'L1') severityClass = 'severity-high';
-            if (row[7] === 'L2') severityClass = 'severity-medium';
-            if (row[7] === 'L3') severityClass = 'severity-low';
-            newRow.classList.add(severityClass);
-            row.forEach(cell => {
+            row.forEach((cell, cellIndex) => {
                 const newCell = newRow.insertCell();
                 newCell.textContent = cell;
+                if (cellIndex === 7) { // Apply class based on Level
+                    if (cell === 'L1') newCell.classList.add('severity-high');
+                    if (cell === 'L2') newCell.classList.add('severity-medium');
+                    if (cell === 'L3') newCell.classList.add('severity-low');
+                }
             });
         });
     }
-    loadCSV().catch(error => console.error('Error loading CSV:', error));
+    loadCSV();
 </script>
 
 <style>
