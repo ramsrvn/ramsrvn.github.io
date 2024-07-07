@@ -50,8 +50,9 @@
         .filter-container label {
             margin-right: 10px;
         }
-        .filter-container input {
+        .filter-container select {
             margin-right: 20px;
+            width: 200px;
         }
         .no-results {
             text-align: center;
@@ -59,19 +60,21 @@
             color: red;
         }
     </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <h1>SCI CERT RULES (Sorted by Severity)</h1>
     <div class="filter-container">
-        <label>Category: <input type="text" id="filter-category"></label>
-        <label>Description: <input type="text" id="filter-description"></label>
-        <label>Rule: <input type="text" id="filter-rule"></label>
-        <label>Severity: <input type="text" id="filter-severity"></label>
-        <label>Likelihood: <input type="text" id="filter-likelihood"></label>
-        <label>Remediation Cost: <input type="text" id="filter-remediation-cost"></label>
-        <label>Priority: <input type="text" id="filter-priority"></label>
-        <label>Level: <input type="text" id="filter-level"></label>
+        <label>Category: <select id="filter-category"></select></label>
+        <label>Description: <select id="filter-description"></select></label>
+        <label>Rule: <select id="filter-rule"></select></label>
+        <label>Severity: <select id="filter-severity"></select></label>
+        <label>Likelihood: <select id="filter-likelihood"></select></label>
+        <label>Remediation Cost: <select id="filter-remediation-cost"></select></label>
+        <label>Priority: <select id="filter-priority"></select></label>
+        <label>Level: <select id="filter-level"></select></label>
         <button onclick="applyFilters()">Apply Filters</button>
     </div>
     <div id="csv-table-container" style="overflow-x: auto;">
@@ -106,6 +109,7 @@
                 skipEmptyLines: true,
                 complete: function(results) {
                     allRows = results.data;
+                    setDropdownOptions();
                     displayPage(1, allRows);
                 },
                 error: function(error) {
@@ -114,26 +118,63 @@
             });
         }
 
+        function setDropdownOptions() {
+            const categories = [...new Set(allRows.map(row => row.Category))];
+            const descriptions = [...new Set(allRows.map(row => row.Description))];
+            const rules = [...new Set(allRows.map(row => row.Rule))];
+            const severities = [...new Set(allRows.map(row => row.Severity))];
+            const likelihoods = [...new Set(allRows.map(row => row.Likelihood))];
+            const remediationCosts = [...new Set(allRows.map(row => row['Remediation Cost']))];
+            const priorities = [...new Set(allRows.map(row => row.Priority))];
+            const levels = [...new Set(allRows.map(row => row.Level))];
+
+            populateDropdown('filter-category', categories);
+            populateDropdown('filter-description', descriptions);
+            populateDropdown('filter-rule', rules);
+            populateDropdown('filter-severity', severities);
+            populateDropdown('filter-likelihood', likelihoods);
+            populateDropdown('filter-remediation-cost', remediationCosts);
+            populateDropdown('filter-priority', priorities);
+            populateDropdown('filter-level', levels);
+
+            $('.filter-container select').select2({
+                maximumSelectionLength: 5,
+                placeholder: "Select or type to search",
+                allowClear: true
+            });
+        }
+
+        function populateDropdown(id, options) {
+            const select = document.getElementById(id);
+            select.innerHTML = '<option></option>'; // Placeholder for select2
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.text = option;
+                select.appendChild(opt);
+            });
+        }
+
         function applyFilters() {
-            const category = document.getElementById('filter-category').value.toLowerCase();
-            const description = document.getElementById('filter-description').value.toLowerCase();
-            const rule = document.getElementById('filter-rule').value.toLowerCase();
-            const severity = document.getElementById('filter-severity').value.toLowerCase();
-            const likelihood = document.getElementById('filter-likelihood').value.toLowerCase();
-            const remediationCost = document.getElementById('filter-remediation-cost').value.toLowerCase();
-            const priority = document.getElementById('filter-priority').value.toLowerCase();
-            const level = document.getElementById('filter-level').value.toLowerCase();
+            const category = $('#filter-category').val();
+            const description = $('#filter-description').val();
+            const rule = $('#filter-rule').val();
+            const severity = $('#filter-severity').val();
+            const likelihood = $('#filter-likelihood').val();
+            const remediationCost = $('#filter-remediation-cost').val();
+            const priority = $('#filter-priority').val();
+            const level = $('#filter-level').val();
 
             const filteredRows = allRows.filter(row => {
                 return (
-                    (!category || row.Category.toLowerCase().includes(category)) &&
-                    (!description || row.Description.toLowerCase().includes(description)) &&
-                    (!rule || row.Rule.toLowerCase().includes(rule)) &&
-                    (!severity || row.Severity.toLowerCase().includes(severity)) &&
-                    (!likelihood || row.Likelihood.toLowerCase().includes(likelihood)) &&
-                    (!remediationCost || row['Remediation Cost'].toLowerCase().includes(remediationCost)) &&
-                    (!priority || row.Priority.toLowerCase().includes(priority)) &&
-                    (!level || row.Level.toLowerCase().includes(level))
+                    (!category || category.includes(row.Category)) &&
+                    (!description || description.includes(row.Description)) &&
+                    (!rule || rule.includes(row.Rule)) &&
+                    (!severity || severity.includes(row.Severity)) &&
+                    (!likelihood || likelihood.includes(row.Likelihood)) &&
+                    (!remediationCost || remediationCost.includes(row['Remediation Cost'])) &&
+                    (!priority || priority.includes(row.Priority)) &&
+                    (!level || level.includes(row.Level))
                 );
             });
 
@@ -171,32 +212,3 @@
                 });
             });
 
-            displayPagination(totalPages, rows);
-        }
-
-        function displayPagination(totalPages, rows) {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageLink = document.createElement('a');
-                pageLink.href = '#';
-                pageLink.textContent = i;
-                pageLink.classList.add('page-link');
-                if (i === 1) {
-                    pageLink.classList.add('active');
-                }
-                pageLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    document.querySelector('.page-link.active').classList.remove('active');
-                    pageLink.classList.add('active');
-                    displayPage(i, rows);
-                });
-                pagination.appendChild(pageLink);
-            }
-        }
-
-        loadCSV().catch(error => console.error('Error loading CSV:', error));
-    </script>
-</body>
-</html>
