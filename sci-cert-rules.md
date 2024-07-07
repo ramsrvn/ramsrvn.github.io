@@ -22,8 +22,8 @@ permalink: /sci-cert-rules/
         </thead>
         <tbody></tbody>
     </table>
-    <div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 </div>
+<div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 
 <script>
     async function loadCSV() {
@@ -41,16 +41,16 @@ permalink: /sci-cert-rules/
             table.innerHTML = ''; // Clear existing rows
 
             const start = (page - 1) * rowsPerPage + 1; // Skip header row
-            const end = start + rowsPerPage;
+            const end = Math.min(start + rowsPerPage, rows.length);
             const pageRows = rows.slice(start, end);
 
             pageRows.forEach(row => {
                 const newRow = table.insertRow();
                 let severityClass = '';
-                if (row[7].trim() === 'L1') severityClass = 'severity-high';
-                if (row[7].trim() === 'L2') severityClass = 'severity-medium';
-                if (row[7].trim() === 'L3') severityClass = 'severity-low';
-                newRow.classList.add(severityClass);
+                if (row[7] && row[7].trim() === 'L1') severityClass = 'severity-high';
+                if (row[7] && row[7].trim() === 'L2') severityClass = 'severity-medium';
+                if (row[7] && row[7].trim() === 'L3') severityClass = 'severity-low';
+                if (severityClass) newRow.classList.add(severityClass);
                 row.forEach(cell => {
                     const newCell = newRow.insertCell();
                     newCell.textContent = cell;
@@ -89,7 +89,7 @@ permalink: /sci-cert-rules/
 <style>
     table {
         width: 100%;
-        min-width: 800px; /* Ensures table fits page width but allows scrolling */
+        min-width: 1000px; /* Ensures table fits page width but allows scrolling */
         border-collapse: collapse;
         table-layout: auto; /* Ensure width of cell matches content */
     }
