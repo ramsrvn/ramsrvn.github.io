@@ -44,11 +44,36 @@
             font-weight: bold;
             color: #0056b3;
         }
+        .filter-container {
+            margin-bottom: 20px;
+        }
+        .filter-container label {
+            margin-right: 10px;
+        }
+        .filter-container input {
+            margin-right: 20px;
+        }
+        .no-results {
+            text-align: center;
+            font-weight: bold;
+            color: red;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <h1>SCI CERT RULES (Sorted by Severity)</h1>
+    <div class="filter-container">
+        <label>Category: <input type="text" id="filter-category"></label>
+        <label>Description: <input type="text" id="filter-description"></label>
+        <label>Rule: <input type="text" id="filter-rule"></label>
+        <label>Severity: <input type="text" id="filter-severity"></label>
+        <label>Likelihood: <input type="text" id="filter-likelihood"></label>
+        <label>Remediation Cost: <input type="text" id="filter-remediation-cost"></label>
+        <label>Priority: <input type="text" id="filter-priority"></label>
+        <label>Level: <input type="text" id="filter-level"></label>
+        <button onclick="applyFilters()">Apply Filters</button>
+    </div>
     <div id="csv-table-container" style="overflow-x: auto;">
         <table id="data-table">
             <thead>
@@ -65,10 +90,13 @@
             </thead>
             <tbody></tbody>
         </table>
+        <div id="no-results" class="no-results" style="display: none;">No results found.</div>
     </div>
     <div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 
     <script>
+        let allRows = [];
+
         async function loadCSV() {
             const response = await fetch('/sci-cert/sci-cert-coding-standard-rules.csv');
             const csvData = await response.text();
@@ -77,65 +105,97 @@
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results) {
-                    const rows = results.data;
-
-                    let currentPage = 1;
-                    const rowsPerPage = 10;
-                    const totalRows = rows.length;
-                    const totalPages = Math.ceil(totalRows / rowsPerPage);
-
-                    function displayPage(page) {
-                        const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
-                        table.innerHTML = ''; // Clear existing rows
-
-                        const start = (page - 1) * rowsPerPage;
-                        const end = Math.min(start + rowsPerPage, rows.length);
-                        const pageRows = rows.slice(start, end);
-
-                        pageRows.forEach(row => {
-                            const newRow = table.insertRow();
-                            let severityClass = '';
-                            if (row.Level.trim() === 'L1') severityClass = 'severity-high';
-                            if (row.Level.trim() === 'L2') severityClass = 'severity-medium';
-                            if (row.Level.trim() === 'L3') severityClass = 'severity-low';
-                            if (severityClass) newRow.classList.add(severityClass);
-                            Object.values(row).forEach(cell => {
-                                const newCell = newRow.insertCell();
-                                newCell.textContent = cell;
-                            });
-                        });
-
-                        displayPagination();
-                    }
-
-                    function displayPagination() {
-                        const pagination = document.getElementById('pagination');
-                        pagination.innerHTML = '';
-
-                        for (let i = 1; i <= totalPages; i++) {
-                            const pageLink = document.createElement('a');
-                            pageLink.href = '#';
-                            pageLink.textContent = i;
-                            pageLink.classList.add('page-link');
-                            if (i === currentPage) {
-                                pageLink.classList.add('active');
-                            }
-                            pageLink.addEventListener('click', (event) => {
-                                event.preventDefault();
-                                currentPage = i;
-                                displayPage(currentPage);
-                            });
-                            pagination.appendChild(pageLink);
-                        }
-                    }
-
-                    displayPage(currentPage);
+                    allRows = results.data;
+                    displayPage(1, allRows);
                 },
                 error: function(error) {
                     console.error('Error parsing CSV:', error);
                 }
             });
         }
+
+        function applyFilters() {
+            const category = document.getElementById('filter-category').value.toLowerCase();
+            const description = document.getElementById('filter-description').value.toLowerCase();
+            const rule = document.getElementById('filter-rule').value.toLowerCase();
+            const severity = document.getElementById('filter-severity').value.toLowerCase();
+            const likelihood = document.getElementById('filter-likelihood').value.toLowerCase();
+            const remediationCost = document.getElementById('filter-remediation-cost').value.toLowerCase();
+            const priority = document.getElementById('filter-priority').value.toLowerCase();
+            const level = document.getElementById('filter-level').value.toLowerCase();
+
+            const filteredRows = allRows.filter(row => {
+                return (
+                    (!category || row.Category.toLowerCase().includes(category)) &&
+                    (!description || row.Description.toLowerCase().includes(description)) &&
+                    (!rule || row.Rule.toLowerCase().includes(rule)) &&
+                    (!severity || row.Severity.toLowerCase().includes(severity)) &&
+                    (!likelihood || row.Likelihood.toLowerCase().includes(likelihood)) &&
+                    (!remediationCost || row['Remediation Cost'].toLowerCase().includes(remediationCost)) &&
+                    (!priority || row.Priority.toLowerCase().includes(priority)) &&
+                    (!level || row.Level.toLowerCase().includes(level))
+                );
+            });
+
+            if (filteredRows.length === 0) {
+                document.getElementById('no-results').style.display = 'block';
+            } else {
+                document.getElementById('no-results').style.display = 'none';
+            }
+
+            displayPage(1, filteredRows);
+        }
+
+        function displayPage(page, rows) {
+            const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+            table.innerHTML = ''; // Clear existing rows
+
+            const rowsPerPage = 10;
+            const totalRows = rows.length;
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+            const start = (page - 1) * rowsPerPage;
+            const end = Math.min(start + rowsPerPage, rows.length);
+            const pageRows = rows.slice(start, end);
+
+            pageRows.forEach(row => {
+                const newRow = table.insertRow();
+                let severityClass = '';
+                if (row.Level.trim() === 'L1') severityClass = 'severity-high';
+                if (row.Level.trim() === 'L2') severityClass = 'severity-medium';
+                if (row.Level.trim() === 'L3') severityClass = 'severity-low';
+                if (severityClass) newRow.classList.add(severityClass);
+                Object.values(row).forEach(cell => {
+                    const newCell = newRow.insertCell();
+                    newCell.textContent = cell;
+                });
+            });
+
+            displayPagination(totalPages, rows);
+        }
+
+        function displayPagination(totalPages, rows) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.textContent = i;
+                pageLink.classList.add('page-link');
+                if (i === 1) {
+                    pageLink.classList.add('active');
+                }
+                pageLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    document.querySelector('.page-link.active').classList.remove('active');
+                    pageLink.classList.add('active');
+                    displayPage(i, rows);
+                });
+                pagination.appendChild(pageLink);
+            }
+        }
+
         loadCSV().catch(error => console.error('Error loading CSV:', error));
     </script>
 </body>
