@@ -44,14 +44,18 @@ permalink: /sci-cert-rules/
             const end = Math.min(start + rowsPerPage, rows.length);
             const pageRows = rows.slice(start, end);
 
-            pageRows.forEach(row => {
+            pageRows.forEach((row, rowIndex) => {
+                if (row.length < 8) {
+                    console.warn(`Skipping row ${rowIndex + start}: insufficient columns`);
+                    return;
+                }
                 const newRow = table.insertRow();
                 let severityClass = '';
                 if (row[7] && row[7].trim() === 'L1') severityClass = 'severity-high';
                 if (row[7] && row[7].trim() === 'L2') severityClass = 'severity-medium';
                 if (row[7] && row[7].trim() === 'L3') severityClass = 'severity-low';
                 if (severityClass) newRow.classList.add(severityClass);
-                row.forEach(cell => {
+                row.forEach((cell, cellIndex) => {
                     const newCell = newRow.insertCell();
                     newCell.textContent = cell;
                 });
@@ -89,7 +93,7 @@ permalink: /sci-cert-rules/
 <style>
     table {
         width: 100%;
-        min-width: 1000px; /* Ensures table fits page width but allows scrolling */
+        min-width: 800px; /* Ensures table fits page width but allows scrolling */
         border-collapse: collapse;
         table-layout: auto; /* Ensure width of cell matches content */
     }
