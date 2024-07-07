@@ -17,7 +17,7 @@ The use of secure coding standards defines a proscriptive set of rules and recom
 
 ### SCI CERT RULES (Sorted by Severity)
 
-<div id="csv-table-container">
+<div id="csv-table-container" style="overflow-x: auto;">
     <table id="data-table">
         <thead>
             <tr>
@@ -101,12 +101,12 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: auto;
+        table-layout: auto; /* Ensure width of cell matches content */
     }
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
-        white-space: nowrap;
+        white-space: nowrap; /* Prevent content wrapping */
     }
     th {
         background-color: #f2f2f2;
