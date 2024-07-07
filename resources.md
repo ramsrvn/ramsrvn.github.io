@@ -16,4 +16,4 @@ The use of secure coding standards defines a proscriptive set of rules and recom
 - Decrease remediation costs by eliminating vulnerabilities before software is deployed
 
 ## View the SCI CERT Rules Table
-[Click here to view the SCI CERT Rules](/sci-cert-rules/)
+[Click here to view the SCI CERT Rules](sci-cert-rules.html)
