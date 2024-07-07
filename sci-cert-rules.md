@@ -1,12 +1,10 @@
 ---
 layout: page
-title: SCI CERT Rules
+title: SCI CERT Rules (Sorted by Severity)
 permalink: /sci-cert-rules/
 ---
 
-## SCI CERT RULES (Sorted by Severity)
-
-<div id="csv-table-container" style="overflow-x: auto;">
+<div id="csv-table-container" style="overflow-x: auto; width: 100%;">
     <table id="data-table">
         <thead>
             <tr>
@@ -22,8 +20,8 @@ permalink: /sci-cert-rules/
         </thead>
         <tbody></tbody>
     </table>
-    <div id="pagination"></div>
 </div>
+<div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 
 <script>
     async function loadCSV() {
@@ -41,7 +39,7 @@ permalink: /sci-cert-rules/
             table.innerHTML = ''; // Clear existing rows
 
             const start = (page - 1) * rowsPerPage + 1; // Skip header row
-            const end = start + rowsPerPage;
+            const end = Math.min(start + rowsPerPage, rows.length);
             const pageRows = rows.slice(start, end);
 
             pageRows.forEach(row => {
@@ -89,9 +87,8 @@ permalink: /sci-cert-rules/
 <style>
     table {
         width: 100%;
-        min-width: 800px; /* Ensures table fits page width but allows scrolling */
         border-collapse: collapse;
-        table-layout: auto; /* Ensure width of cell matches content */
+        table-layout: fixed;
     }
     th, td {
         border: 1px solid #ddd;
@@ -104,11 +101,10 @@ permalink: /sci-cert-rules/
     }
     .severity-high {
         background-color: #FA8072; /* Salmon */
-        color: black;
+        color: white;
     }
     .severity-medium {
         background-color: #FFA500; /* Tangerine */
-        color: black;
     }
     .severity-low {
         background-color: #F0FFF0; /* HoneyDew */
@@ -118,9 +114,22 @@ permalink: /sci-cert-rules/
         margin: 0 5px;
         text-decoration: none;
         color: #007bff;
+        padding: 5px 10px;
     }
     .page-link.active {
         font-weight: bold;
         color: #0056b3;
+    }
+    .severity-high .page-link {
+        background-color: #FA8072; /* Salmon */
+        color: black;
+    }
+    .severity-medium .page-link {
+        background-color: #FFA500; /* Tangerine */
+        color: black;
+    }
+    .severity-low .page-link {
+        background-color: #F0FFF0; /* HoneyDew */
+        color: black;
     }
 </style>
