@@ -11,11 +11,11 @@ SCI CERT Coding Standards are a set of rules and recommendations  developed by t
 
 The use of secure coding standards defines a proscriptive set of rules and recommendations to which the source code can be evaluated for compliance
 
-# SCI CERT Secure Coding Initiative Objective 
+### SCI CERT Secure Coding Initiative Objective 
 - Reduce the number of vulnerabilities to a level where they can be handled by computer security incident response teams (CSIRTs)
 - Decrease remediation costs by eliminating vulnerabilities before software is deployed
 
-# SCI CERT RULES (Sorted by Severity)
+### SCI CERT RULES (Sorted by Severity)
 
 <table id="data-table">
     <thead>
