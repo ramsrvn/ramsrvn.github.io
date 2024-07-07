@@ -17,27 +17,31 @@ The use of secure coding standards defines a proscriptive set of rules and recom
 
 ### SCI CERT RULES (Sorted by Severity)
 
-<table id="data-table">
-    <thead>
-        <tr>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Rule</th>
-            <th>Severity</th>
-            <th>Likelihood</th>
-            <th>Remediation Cost</th>
-            <th>Priority</th>
-            <th>Level</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+Category	Description	Rule	Severity	Likelihood	Remediation Cost	Priority	Level
+
+<div id="csv-table-container">
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Rule</th>
+                <th>Severity</th>
+                <th>Likelihood</th>
+                <th>Remediation Cost</th>
+                <th>Priority</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 
 <script>
     async function loadCSV() {
         const response = await fetch('/sci-cert/sci-cert-coding-standard-rules.csv');
         const data = await response.text();
-        const rows = data.split('\\n').map(row => row.split(','));
+        const rows = data.split('\n').map(row => row.split(','));
         const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
         rows.forEach((row, rowIndex) => {
             if (rowIndex === 0) return; // Skip header row
