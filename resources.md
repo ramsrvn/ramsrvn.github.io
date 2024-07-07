@@ -35,7 +35,7 @@ The use of secure coding standards defines a proscriptive set of rules and recom
 
 <script>
     async function loadCSV() {
-        const response = await fetch('data.csv');
+        const response = await fetch('sci-cert/sci-cert-coding-standard-rules.csv');
         const data = await response.text();
         const rows = data.split('\\n').map(row => row.split(','));
         const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
