@@ -69,6 +69,7 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     }
     th {
         background-color: #f2f2f2;
+        font-weight: bold;
     }
     .severity-high {
         background-color: #FA8072; /* Salmon */
