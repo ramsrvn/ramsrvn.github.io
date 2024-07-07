@@ -33,6 +33,7 @@ The use of secure coding standards defines a proscriptive set of rules and recom
         </thead>
         <tbody></tbody>
     </table>
+    <div id="pagination"></div>
 </div>
 
 <script>
@@ -41,21 +42,57 @@ The use of secure coding standards defines a proscriptive set of rules and recom
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
 
-        const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        const totalRows = rows.length - 1; // Exclude header row
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
 
-        rows.forEach((row, rowIndex) => {
-            if (rowIndex === 0) return; // Skip header row
-            const newRow = table.insertRow();
-            let severityClass = '';
-            if (row[7].trim() === 'L1') severityClass = 'severity-high';
-            if (row[7].trim() === 'L2') severityClass = 'severity-medium';
-            if (row[7].trim() === 'L3') severityClass = 'severity-low';
-            newRow.classList.add(severityClass);
-            row.forEach(cell => {
-                const newCell = newRow.insertCell();
-                newCell.textContent = cell;
+        function displayPage(page) {
+            const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+            table.innerHTML = ''; // Clear existing rows
+
+            const start = (page - 1) * rowsPerPage + 1; // Skip header row
+            const end = start + rowsPerPage;
+            const pageRows = rows.slice(start, end);
+
+            pageRows.forEach(row => {
+                const newRow = table.insertRow();
+                let severityClass = '';
+                if (row[7].trim() === 'L1') severityClass = 'severity-high';
+                if (row[7].trim() === 'L2') severityClass = 'severity-medium';
+                if (row[7].trim() === 'L3') severityClass = 'severity-low';
+                newRow.classList.add(severityClass);
+                row.forEach(cell => {
+                    const newCell = newRow.insertCell();
+                    newCell.textContent = cell;
+                });
             });
-        });
+
+            displayPagination();
+        }
+
+        function displayPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.textContent = i;
+                pageLink.classList.add('page-link');
+                if (i === currentPage) {
+                    pageLink.classList.add('active');
+                }
+                pageLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    currentPage = i;
+                    displayPage(currentPage);
+                });
+                pagination.appendChild(pageLink);
+            }
+        }
+
+        displayPage(currentPage);
     }
     loadCSV().catch(error => console.error('Error loading CSV:', error));
 </script>
@@ -64,12 +101,12 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: auto; /* Ensure width of cell matches content */
+        table-layout: auto;
     }
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
-        white-space: nowrap; /* Prevent content wrapping */
+        white-space: nowrap;
     }
     th {
         background-color: #f2f2f2;
@@ -86,5 +123,14 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     .severity-low {
         background-color: #F0FFF0; /* HoneyDew */
         color: black;
+    }
+    .page-link {
+        margin: 0 5px;
+        text-decoration: none;
+        color: #007bff;
+    }
+    .page-link.active {
+        font-weight: bold;
+        color: #0056b3;
     }
 </style>
