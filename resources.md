@@ -40,22 +40,24 @@ The use of secure coding standards defines a proscriptive set of rules and recom
         const response = await fetch('/sci-cert/sci-cert-coding-standard-rules.csv');
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
+
         const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+
         rows.forEach((row, rowIndex) => {
             if (rowIndex === 0) return; // Skip header row
             const newRow = table.insertRow();
-            row.forEach((cell, cellIndex) => {
+            let severityClass = '';
+            if (row[7].trim() === 'L1') severityClass = 'severity-high';
+            if (row[7].trim() === 'L2') severityClass = 'severity-medium';
+            if (row[7].trim() === 'L3') severityClass = 'severity-low';
+            newRow.classList.add(severityClass);
+            row.forEach(cell => {
                 const newCell = newRow.insertCell();
                 newCell.textContent = cell;
-                if (cellIndex === 7) { // Apply class based on Level
-                    if (cell === 'L1') newCell.classList.add('severity-high');
-                    if (cell === 'L2') newCell.classList.add('severity-medium');
-                    if (cell === 'L3') newCell.classList.add('severity-low');
-                }
             });
         });
     }
-    loadCSV();
+    loadCSV().catch(error => console.error('Error loading CSV:', error));
 </script>
 
 <style>
@@ -70,9 +72,6 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     th {
         background-color: #f2f2f2;
         font-weight: bold;
-    }
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
     }
     .severity-high {
         background-color: #FA8072; /* Salmon */
