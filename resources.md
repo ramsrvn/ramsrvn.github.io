@@ -64,10 +64,12 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: auto; /* Ensure width of cell matches content */
     }
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
+        white-space: nowrap; /* Prevent content wrapping */
     }
     th {
         background-color: #f2f2f2;
@@ -75,10 +77,11 @@ The use of secure coding standards defines a proscriptive set of rules and recom
     }
     .severity-high {
         background-color: #FA8072; /* Salmon */
-        color: white;
+        color: black;
     }
     .severity-medium {
         background-color: #FFA500; /* Tangerine */
+        color: black;
     }
     .severity-low {
         background-color: #F0FFF0; /* HoneyDew */
