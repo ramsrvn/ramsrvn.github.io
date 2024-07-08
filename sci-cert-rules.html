@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCI CERT Rules</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
     <style>
         table {
             width: 100%;
@@ -20,9 +21,6 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        th, td:nth-child(1) { width: 15%; } /* Adjust width as needed */
-        th, td:nth-child(2) { width: 40%; } /* Adjust width as needed */
-        th, td:nth-child(3), th, td:nth-child(4), th, td:nth-child(5), th, td:nth-child(6), th, td:nth-child(7), th, td:nth-child(8) { width: 10%; } /* Adjust width as needed */
         .severity-high {
             background-color: #FA8072; /* Salmon */
             color: black;
@@ -50,8 +48,9 @@
         .filter-container label {
             margin-right: 10px;
         }
-        .filter-container input {
+        .filter-container select, .filter-container input {
             margin-right: 20px;
+            width: 200px;
         }
         .no-results {
             text-align: center;
@@ -59,19 +58,20 @@
             color: red;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <h1>SCI CERT RULES (Sorted by Severity)</h1>
     <div class="filter-container">
-        <label>Category: <input type="text" id="filter-category"></label>
+        <label>Category: <select id="filter-category"></select></label>
         <label>Description: <input type="text" id="filter-description"></label>
         <label>Rule: <input type="text" id="filter-rule"></label>
-        <label>Severity: <input type="text" id="filter-severity"></label>
-        <label>Likelihood: <input type="text" id="filter-likelihood"></label>
-        <label>Remediation Cost: <input type="text" id="filter-remediation-cost"></label>
-        <label>Priority: <input type="text" id="filter-priority"></label>
-        <label>Level: <input type="text" id="filter-level"></label>
+        <label>Severity: <select id="filter-severity"></select></label>
+        <label>Likelihood: <select id="filter-likelihood"></select></label>
+        <label>Remediation Cost: <select id="filter-remediation-cost"></select></label>
+        <label>Priority: <select id="filter-priority"></select></label>
+        <label>Level: <select id="filter-level"></select></label>
         <button onclick="applyFilters()">Apply Filters</button>
     </div>
     <div id="csv-table-container" style="overflow-x: auto;">
@@ -106,6 +106,7 @@
                 skipEmptyLines: true,
                 complete: function(results) {
                     allRows = results.data;
+                    setDropdownOptions();
                     displayPage(1, allRows);
                 },
                 error: function(error) {
@@ -114,15 +115,53 @@
             });
         }
 
+        function setDropdownOptions() {
+            const categories = ["Arrays (ARR)", "Characters and Strings (STR)", "Concurrency (CON)", "Containers (CTR)", 
+            "Declarations and Initialization (DCL)", "Environment (ENV)", "Error Handling (ERR)", 
+            "Exceptions and Error Handling", "Expressions (EXP)", "File Input/Output (FIO)", 
+            "Floating Point (FLP)", "Input Output (FIO)", "Integers (INT)", "Memory Management (MEM)", 
+            "Miscellaneous (MSC)", "Object Oriented Programming (OOP)", "POSIX (POS)", 
+            "Preprocessor (PRE)", "Signals (SIG)", "Windows (WIN)"];
+            const severities = ["High", "Medium", "Low"];
+            const likelihoods = ["Likely", "Probable", "Unlikely"];
+            const remediationCosts = ["High", "Medium", "Low"];
+            const priorities = ["P1", "P2", "P3", "P4", "P6", "P8", "P9", "P12", "P18", "P27"];
+            const levels = ["L1", "L2", "L3"];
+
+            populateDropdown('filter-category', categories);
+            populateDropdown('filter-severity', severities);
+            populateDropdown('filter-likelihood', likelihoods);
+            populateDropdown('filter-remediation-cost', remediationCosts);
+            populateDropdown('filter-priority', priorities);
+            populateDropdown('filter-level', levels);
+
+            $('.filter-container select').select2({
+                maximumSelectionLength: 5,
+                placeholder: "Select or type to search",
+                allowClear: true
+            });
+        }
+
+        function populateDropdown(id, options) {
+            const select = document.getElementById(id);
+            select.innerHTML = '<option></option>'; // Placeholder for select2
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.text = option;
+                select.appendChild(opt);
+            });
+        }
+
         function applyFilters() {
-            const category = document.getElementById('filter-category').value.toLowerCase();
-            const description = document.getElementById('filter-description').value.toLowerCase();
-            const rule = document.getElementById('filter-rule').value.toLowerCase();
-            const severity = document.getElementById('filter-severity').value.toLowerCase();
-            const likelihood = document.getElementById('filter-likelihood').value.toLowerCase();
-            const remediationCost = document.getElementById('filter-remediation-cost').value.toLowerCase();
-            const priority = document.getElementById('filter-priority').value.toLowerCase();
-            const level = document.getElementById('filter-level').value.toLowerCase();
+            const category = $('#filter-category').val();
+            const description = $('#filter-description').val().toLowerCase();
+            const rule = $('#filter-rule').val().toLowerCase();
+            const severity = $('#filter-severity').val();
+            const likelihood = $('#filter-likelihood').val();
+            const remediationCost = $('#filter-remediation-cost').val();
+            const priority = $('#filter-priority').val();
+            const level = $('#filter-level').val();
 
             const filteredRows = allRows.filter(row => {
                 return (
@@ -189,7 +228,7 @@
                 pageLink.addEventListener('click', (event) => {
                     event.preventDefault();
                     document.querySelector('.page-link.active').classList.remove('active');
-                    pageLink.classList.add('active');
+                     pageLink.classList.add('active');
                     displayPage(i, rows);
                 });
                 pagination.appendChild(pageLink);
