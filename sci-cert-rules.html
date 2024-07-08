@@ -68,8 +68,8 @@
     <h1>SCI CERT RULES (Sorted by Severity)</h1>
     <div class="filter-container">
         <label>Category: <select id="filter-category"></select></label>
-        <label>Description: <select id="filter-description"></select></label>
-        <label>Rule: <select id="filter-rule"></select></label>
+        <label>Description: <input type="text" id="filter-description"></label>
+        <label>Rule: <input type="text" id="filter-rule"></label>
         <label>Severity: <select id="filter-severity"></select></label>
         <label>Likelihood: <select id="filter-likelihood"></select></label>
         <label>Remediation Cost: <select id="filter-remediation-cost"></select></label>
@@ -98,6 +98,20 @@
     <div id="pagination" style="text-align: center; margin-top: 20px;"></div>
 
     <script>
+        const categories = [
+            "Arrays (ARR)", "Characters and Strings (STR)", "Concurrency (CON)", "Containers (CTR)", 
+            "Declarations and Initialization (DCL)", "Environment (ENV)", "Error Handling (ERR)", 
+            "Exceptions and Error Handling", "Expressions (EXP)", "File Input/Output (FIO)", 
+            "Floating Point (FLP)", "Input Output (FIO)", "Integers (INT)", "Memory Management (MEM)", 
+            "Miscellaneous (MSC)", "Object Oriented Programming (OOP)", "POSIX (POS)", 
+            "Preprocessor (PRE)", "Signals (SIG)", "Windows (WIN)"
+        ];
+        const levels = ["L1", "L2", "L3"];
+        const severities = ["High", "Medium", "Low"];
+        const likelihoods = ["Likely", "Probable", "Unlikely"];
+        const remediationCosts = ["High", "Medium", "Low"];
+        const priorities = ["P1", "P2", "P3", "P4", "P6", "P8", "P9", "P12", "P18", "P27"];
+
         let allRows = [];
 
         async function loadCSV() {
@@ -119,18 +133,7 @@
         }
 
         function setDropdownOptions() {
-            const categories = [...new Set(allRows.map(row => row.Category))];
-            const descriptions = [...new Set(allRows.map(row => row.Description))];
-            const rules = [...new Set(allRows.map(row => row.Rule))];
-            const severities = [...new Set(allRows.map(row => row.Severity))];
-            const likelihoods = [...new Set(allRows.map(row => row.Likelihood))];
-            const remediationCosts = [...new Set(allRows.map(row => row['Remediation Cost']))];
-            const priorities = [...new Set(allRows.map(row => row.Priority))];
-            const levels = [...new Set(allRows.map(row => row.Level))];
-
             populateDropdown('filter-category', categories);
-            populateDropdown('filter-description', descriptions);
-            populateDropdown('filter-rule', rules);
             populateDropdown('filter-severity', severities);
             populateDropdown('filter-likelihood', likelihoods);
             populateDropdown('filter-remediation-cost', remediationCosts);
@@ -157,8 +160,8 @@
 
         function applyFilters() {
             const category = $('#filter-category').val();
-            const description = $('#filter-description').val();
-            const rule = $('#filter-rule').val();
+            const description = $('#filter-description').val().toLowerCase();
+            const rule = $('#filter-rule').val().toLowerCase();
             const severity = $('#filter-severity').val();
             const likelihood = $('#filter-likelihood').val();
             const remediationCost = $('#filter-remediation-cost').val();
@@ -168,8 +171,8 @@
             const filteredRows = allRows.filter(row => {
                 return (
                     (!category || category.includes(row.Category)) &&
-                    (!description || description.includes(row.Description)) &&
-                    (!rule || rule.includes(row.Rule)) &&
+                    (!description || row.Description.toLowerCase().includes(description)) &&
+                    (!rule || row.Rule.toLowerCase().includes(rule)) &&
                     (!severity || severity.includes(row.Severity)) &&
                     (!likelihood || likelihood.includes(row.Likelihood)) &&
                     (!remediationCost || remediationCost.includes(row['Remediation Cost'])) &&
@@ -212,3 +215,32 @@
                 });
             });
 
+            displayPagination(totalPages, rows);
+        }
+
+        function displayPagination(totalPages, rows) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.textContent = i;
+                pageLink.classList.add('page-link');
+                if (i === 1) {
+                    pageLink.classList.add('active');
+                }
+                pageLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    document.querySelector('.page-link.active').classList.remove('active');
+                    pageLink.classList.add('active');
+                    displayPage(i, rows);
+                });
+                pagination.appendChild(pageLink);
+            }
+        }
+
+        loadCSV().catch(error => console.error('Error loading CSV:', error));
+    </script>
+</body>
+</html>
