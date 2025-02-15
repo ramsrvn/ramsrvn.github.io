@@ -7,6 +7,9 @@ permalink: /experience/
 
 This page contains an experience.
 
+# [Garmin International](https://www.garmin.com/), Olathe Kansas
+
+ * Software Engineer 2 in Product Security (Jan 2023 - Present)
 
 # [Ensoft Corp.](http://www.ensoftcorp.com/), Ames Iowa 
 
