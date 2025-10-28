@@ -1,0 +1,89 @@
+#
+# This file contains configuration flags to customize your site
+#
+
+# Name of your site (displayed in the header)
+name: Sharwan Ram
+
+# Short bio or description (displayed in the header)
+description: Portfolio
+
+# URL of your avatar or profile pic (you could use your GitHub profile pic)
+avatar: https://raw.githubusercontent.com/ramsrvn/ramsrvn.github.io/master/images/logo.png
+
+#
+# Flags below are optional
+#
+
+# Includes an icon in the footer for each username you enter
+footer-links:
+  dribbble:
+  email: sharwan@iastate.edu
+  facebook:
+  flickr:
+  github: ramsrvn
+  instagram:
+  linkedin: shrawanram
+  instagram: shrawan_isu
+  pinterest:
+  rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
+  twitter:
+ # stackoverflow: users/475329/ben-holland
+ # youtube: # channel/UC78AaIVLsR7qUMVqUnK5mrA
+
+# Enter your Disqus shortname (not your username) to enable commenting on posts
+# You can find your shortname on the Settings page of your Disqus account
+disqus:
+
+# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+google_analytics: UA-64320378-1
+
+# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
+# Used for Sitemap.xml and your RSS feed
+url: https://shrawanram.com
+
+# If you're hosting your site at a Project repository on GitHub pages
+# (http://yourusername.github.io/repository-name)
+# and NOT your User repository (http://yourusername.github.io)
+# then add in the baseurl here, like this: "/repository-name"
+baseurl: ""
+
+#
+# !! You don't need to change any of the configuration flags below !!
+#
+markdown: kramdown
+kramdown:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "strikethrough", "superscript", "with_toc_data"]
+
+highlighter: rouge
+permalink: /:title/
+
+# The release of Jekyll Now that you're using
+version: v1.1.0
+
+# Set the Sass partials directory, as we're using @imports
+sass:
+  style: :expanded # You might prefer to minify using :compressed
+
+# Use the following plug-ins
+gems:
+  - jemoji # Emoji please!
+  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+
+# Exclude these files from your production _site
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - LICENSE
+    - JekylNow-LICENSE
+    - README.md
+    - attributions.txt
+    - CNAME
+    - .git/
+    - .gitignore
+    - .DS_Store
+    - Thumbs.db
+
+# Include the following files and directories
+include:
+    - favicon/ # favicons

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+
+    {% include meta.html %}
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+	<link rel="stylesheet" href="{% if site.baseurl %}{{ site.baseurl }}{% endif %}/css/lightbox.min.css">
+	
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+  
+    <script type="text/javascript">if(window.location.protocol != "https:") { window.location.href = "https:" + window.location.href.substring(window.location.protocol.length); }</script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+       $(document).ready(function() {
+            // Tooltip only Text
+            $('.hover-tooltip').hover(function(){
+                    // Hover over code
+                    var tip = $(this).attr('tip');
+                    $(this).data('tipText', tip).removeAttr('tip');
+                    $('<p class="tooltip"></p>')
+                    .text(tip)
+                    .appendTo('body')
+                    .fadeIn('slow');
+            }, function() {
+                    // Hover out code
+                    $(this).attr('tip', $(this).data('tipText'));
+                    $('.tooltip').remove();
+            }).mousemove(function(e) {
+                    var mousex = e.pageX + 20; //Get X coordinates
+                    var mousey = e.pageY + 10; //Get Y coordinates
+                    $('.tooltip')
+                    .css({ top: mousey, left: mousex })
+            });
+    });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+            $(".toggle-abstract").click(function() {
+                 $(this).closest('li').parent().next('.abstract').toggle();
+                return false;   
+            });
+        });
+    </script>
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <p class="site-description">{{ site.description }}</p>
+          </div>
+
+          <nav>
+            <a href="{{ site.baseurl }}/">Bio</a>
+            <a href="{{ site.baseurl }}/Resume/">Resume</a>
+            <a href="{{ site.baseurl }}/projects">Projects</a>
+            <a href="{{ site.baseurl }}/publications">Publications</a>
+    	      <a href="{{ site.baseurl }}/experience">Experience</a>
+            <a href="{{ site.baseurl }}/certifications">Certifications</a>
+            <a href="{{ site.baseurl }}/resources">Resources</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      {{ content }}
+    </div>
+
+    <div class="wrapper-footer" style="clear:both;">
+      <div class="container">
+        <footer class="footer">
+          {% include svg-icons.html %}
+        </footer>
+      </div>
+    </div>
+	
+	<script type="text/javascript" src="{% if site.baseurl %}{{ site.baseurl }}{% endif %}/js/lightbox.min.js"></script>
+
+    {% include analytics.html %}
+  </body>
+</html>
