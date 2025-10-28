@@ -87,3 +87,7 @@ exclude:
 # Include the following files and directories
 include:
     - favicon/ # favicons
+
+title: Sharwan Ram
+description: Senior Software Engineer | Data & Security Engineering
+theme: jekyll-theme-minimal
