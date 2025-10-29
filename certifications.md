@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Certificates
-permalink: /certificates/
+permalink: /certifications/
 ---
 
 <div class="certifications">
