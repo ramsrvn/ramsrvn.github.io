@@ -7,8 +7,8 @@ title: Sharwan Ram - Senior Software Engineer
 
 # Sharwan Ram
 
-*Senior Software Engineer | Data & Security Engineering | Cloud & AI-Driven Platforms*  
-*AWS Certified Solutions Architect – Professional | AWS Certified Developer – Associate*
+Senior Software Engineer | Data & Security Engineering | Cloud & AI-Driven Platforms  
+AWS Certified Solutions Architect – Professional | AWS Certified Developer – Associate
 
 ## About Me
 
