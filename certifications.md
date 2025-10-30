@@ -1,31 +1,33 @@
 ---
 layout: page
-title: Certificates
+title: Certifications
 permalink: /certifications/
 ---
 
-<div class="certifications">
-    <h1><span role="img" aria-label="medal">🏅</span> Certifications</h1>
-    
-    <p>Official AWS credentials demonstrating expertise in <strong>cloud architecture, software development, and data engineering</strong>.</p>
-    
-    <hr>
-    
-    <div class="certification-item">
-        <h2><span role="img" aria-label="cloud">🌩️</span> AWS Certified Solutions Architect – Professional</h2>
-        <p><strong>Issuer:</strong> <a href="https://aws.amazon.com/certification/certified-solutions-architect-professional/">Amazon Web Services (AWS)</a></p>
-        <p><strong>Issued:</strong> September 2025 | <strong>Expires:</strong> September 2028</p>
-        <p><strong>Credential ID:</strong> f349fc68a1624d74b63f45899b320cf8</p>
-        <p><a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/f349fc68a1624d74b63f45899b320cf8">🔗 View Credential on AWS CertMetrics</a></p>
-    </div>
-    
-    <hr>
-    
-    <div class="certification-item">
-        <h2><span role="img" aria-label="computer">💻</span> AWS Certified Developer – Associate</h2>
-        <p><strong>Issuer:</strong> <a href="https://aws.amazon.com/certification/certified-developer-associate/">Amazon Web Services (AWS)</a></p>
-        <p><strong>Issued:</strong> September 2025 | <strong>Expires:</strong> September 2028</p>
-        <p><strong>Credential ID:</strong> 67fdf17ac1cd4259b7683c927074fe03</p>
-        <p><a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/67fdf17ac1cd4259b7683c927074fe03">🔗 View Credential on AWS CertMetrics</a></p>
-    </div>
-</div>
+# 🏅 Certifications  
+
+Official credentials demonstrating verified expertise across **cloud architecture, data engineering, and product security**.
+
+---
+
+## 🌩️ AWS Certified Solutions Architect – Professional  
+**Issuer:** [Amazon Web Services (AWS)](https://aws.amazon.com/certification/certified-solutions-architect-professional/)  
+**Issued:** September 2025 | **Expires:** September 2028  
+**Credential ID:** f349fc68a1624d74b63f45899b320cf8  
+[🔗 Verify Credential on AWS CertMetrics](https://cp.certmetrics.com/amazon/en/public/verify/credential/f349fc68a1624d74b63f45899b320cf8)
+
+---
+
+## 💻 AWS Certified Developer – Associate  
+**Issuer:** [Amazon Web Services (AWS)](https://aws.amazon.com/certification/certified-developer-associate/)  
+**Issued:** September 2025 | **Expires:** September 2028  
+**Credential ID:** 67fdf17ac1cd4259b7683c927074fe03  
+[🔗 Verify Credential on AWS CertMetrics](https://cp.certmetrics.com/amazon/en/public/verify/credential/67fdf17ac1cd4259b7683c927074fe03)
+
+---
+
+## 🛡️ CompTIA PenTest+  
+**Issuer:** [Computing Technology Industry Association (CompTIA)](https://www.comptia.org/certifications/pentest)  
+**Issued:** October 2025 | **Expires:** October 2028  
+**Credential ID:** Z9CFBS1TSF41CX22  
+[🔗 Verify Credential on CompTIA CertMetrics](https://www.certmetrics.com/comptia/public/verification.aspx)

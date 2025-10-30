@@ -1,59 +1,57 @@
-<div class="container">
-    <h1>Professional Resources</h1>
-    <p>Curated references, frameworks, and learning resources that influence my work in <strong>data engineering, AI, cloud security, and secure software design</strong>.</p>
+---
+layout: page
+title: Resources
+permalink: /resources/
+---
 
-    <section>
-        <h2>☁️ Cloud & Data Engineering</h2>
-        <ul>
-            <li><a href="https://aws.amazon.com/architecture/">AWS Architecture Center</a> — Design patterns, reference architectures, and best practices for scalable, fault-tolerant data systems.</li>
-            <li><a href="https://www.databricks.com/resources">Databricks Lakehouse Resources</a> — Whitepapers and tutorials on Delta Lake, PySpark optimization, and data governance.</li>
-            <li><a href="https://spark.apache.org/docs/latest/">Apache Spark Documentation</a> — Core concepts, tuning, and advanced analytics guides.</li>
-            <li><a href="https://developer.tableau.com/">Tableau Developer Portal</a> — Building interactive dashboards and embedding analytics.</li>
-        </ul>
-    </section>
+# 📚 Professional Resources  
 
-    <section>
-        <h2>🤖 AI, ML & Generative AI</h2>
-        <ul>
-            <li><a href="https://aws.amazon.com/bedrock/">AWS Bedrock</a> — Foundation models for building GenAI applications.</li>
-            <li><a href="https://python.langchain.com/docs/">LangChain Docs</a> — Framework for developing LLM-powered pipelines and retrieval-augmented generation.</li>
-            <li><a href="https://platform.openai.com/docs/">OpenAI API Reference</a> — Integrate GPT models into analytics, automation, and compliance intelligence.</li>
-            <li><a href="https://huggingface.co/models">Hugging Face Hub</a> — Repository of open-source LLMs and transformers for fine-tuning.</li>
-        </ul>
-    </section>
+A curated collection of resources I frequently reference to stay current across **data engineering, cloud security, AI, and compliance** domains.
 
-    <section>
-        <h2>🔐 Security, Compliance & Governance</h2>
-        <ul>
-            <li><a href="https://cyclonedx.org/">SBOM & CycloneDX</a> — Standards for software bill of materials and supply-chain transparency.</li>
-            <li><a href="https://single-market-economy.ec.europa.eu/sectors/electrical-and-electronic-engineering-industries-eei/radio-equipment-directive-red_en">EU Radio Equipment Directive (RED)</a> — European directive defining cybersecurity requirements.</li>
-            <li><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act">EU Cyber Resilience Act (CRA)</a> — Proposed EU regulation for secure-by-design principles.</li>
-            <li><a href="https://aws.amazon.com/security-hub/">AWS Security Hub</a> — Best practices and automation frameworks for cloud compliance.</li>
-            <li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a> — Common software vulnerabilities and mitigation strategies.</li>
-        </ul>
-    </section>
+---
 
-    <section>
-        <h2>💻 Secure Coding & Analysis</h2>
-        <ul>
-            <li><a href="https://wiki.sei.cmu.edu/confluence/display/seccode">CERT Secure Coding Standards</a> — Rules from Carnegie Mellon's SEI CERT division.</li>
-            <li><a href="http://cppcheck.sourceforge.net/">Cppcheck Static Analysis</a> — Open-source static analysis for C/C++ codebases.</li>
-            <li><a href="http://www.ensoftcorp.com/atlas/">Atlas Program Analysis Framework</a> — Foundation for custom software-analysis toolchains.</li>
-            <li><a href="https://codeql.github.com/">CodeQL</a> — Semantic code analysis for detecting vulnerabilities in CI/CD pipelines.</li>
-        </ul>
-    </section>
+## ☁️ Cloud Engineering & Architecture
+- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) — Best practices for cloud reliability, security, and cost optimization.  
+- [Databricks Documentation](https://docs.databricks.com/) — Unified data and AI platform guides.  
+- [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) — ETL, schema management, and orchestration reference.  
+- [Delta Lake Docs](https://docs.delta.io/latest/index.html) — Building reliable and auditable data lakes.  
 
-    <section>
-        <h2>📚 Continuous Learning</h2>
-        <ul>
-            <li><a href="https://aws.amazon.com/training/">AWS Training and Certification</a> — Cloud-native learning paths.</li>
-            <li><a href="https://academy.databricks.com/">Databricks Academy</a> — Hands-on courses on data engineering.</li>
-            <li><a href="https://ocw.mit.edu/">MIT OpenCourseWare – AI & Security</a> — Free graduate-level lectures.</li>
-            <li><a href="https://cs229.stanford.edu/">Stanford CS229 Machine Learning</a> — Classic foundational course for practical ML.</li>
-        </ul>
-    </section>
+---
 
-    <blockquote>
-        <p>These resources guide my approach to building <strong>AI-driven, secure, and data-intelligent systems</strong> — integrating best practices from <strong>cloud engineering</strong>, <strong>cybersecurity</strong>, and <strong>machine learning</strong> disciplines.</p>
-    </blockquote>
-</div>
+## 🤖 AI, ML & Generative AI  
+- [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) — Foundation model and GenAI workflow development.  
+- [LangChain Docs](https://python.langchain.com/docs/) — Framework for LLM application development.  
+- [OpenAI API Reference](https://platform.openai.com/docs/introduction) — Language model APIs and integrations.  
+- [AWS AI Security Best Practices](https://aws.amazon.com/security/) — Guidance for securing GenAI and LLM-based architectures.  
+- [Pinecone Vector DB](https://docs.pinecone.io/) — Managing embeddings for semantic search and retrieval.  
+
+---
+
+## 🔐 Security, Compliance & Governance  
+- [CompTIA PenTest+ Certification](https://www.comptia.org/certifications/pentest) — Practical penetration testing and vulnerability assessment framework for enterprise systems.  
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) — Standard awareness document for application security risks.  
+- [EU Cyber Resilience Act (CRA)](https://digital-strategy.ec.europa.eu/en/library/cyber-resilience-act) — EU regulation ensuring hardware/software cybersecurity.  
+- [EU Radio Equipment Directive (RED)](https://digital-strategy.ec.europa.eu/en/policies/radio-equipment-directive) — Compliance standards for wireless and IoT devices.  
+- [NIST 800-53](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final) — Security and privacy controls for federal systems.  
+- [CycloneDX SBOM Standard](https://cyclonedx.org/specification/) — Specification for generating and analyzing software BOMs.  
+
+---
+
+## 🧰 Coding, Data & Development  
+- [PySpark API Docs](https://spark.apache.org/docs/latest/api/python/) — PySpark classes and functions.  
+- [Pandas Documentation](https://pandas.pydata.org/docs/) — Data analysis and manipulation library.  
+- [SQL Style Guide](https://www.sqlstyle.guide/) — Best practices for writing clean SQL.  
+- [Databricks SQL Reference](https://docs.databricks.com/sql/index.html) — Query syntax and examples for Delta Lake.  
+- [GitHub Actions](https://docs.github.com/en/actions) — Automating CI/CD pipelines.  
+
+---
+
+## 🌱 Continuous Learning & Community  
+- [AWS Skill Builder](https://skillbuilder.aws/) — Free AWS training and labs.  
+- [Coursera — Generative AI with LLMs](https://www.coursera.org/learn/generative-ai-with-llms) — Deep dive into building and deploying GenAI solutions.  
+- [LinkedIn Learning: Cloud Security](https://www.linkedin.com/learning/) — Industry-recognized cloud and security courses.  
+- [Kaggle](https://www.kaggle.com/) — Datasets and community challenges for ML and data analysis.  
+
+---
+
+> These curated resources shape my approach to building **AI-driven, compliant, and secure cloud data systems** — uniting disciplines from **data engineering**, **cloud architecture**, and **cybersecurity**.

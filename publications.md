@@ -3,21 +3,37 @@ layout: page
 title: Publications
 permalink: /publications/
 ---
-{::options auto_ids="false" /}
 
-This page contains a paper publication.
+# 📚 Publications  
 
-<a name="2018"></a>
+This page highlights my research contributions in **automated documentation systems**, **software analytics**, and **cybersecurity for large-scale codebases**.
 
-## 2018
+---
 
-- <a name="ICSME-2018"></a>Ahmed Tamrawi, Sharwan Ram, Payas Awadhutkar,Ganesh Ram Santhanam, Benjamin Holland, Suresh Kothari. **Automated On-Demand Context-Specific Documentation.** *[ICSME-2018](https://dysdoc.github.io/dysdoc3/index.html)*, Madrid, Spain, September 2018.<br/>
-**Tutorial:**&nbsp;[<a href="https://ieeexplore.ieee.org/document/8530110" class="toggle-abstract">Abstract</a>]&nbsp;[[Materials](https://github.com/EnSoftCorp/DynaDoc)]
-<div class="abstract"><p>This 2018 DOCGEN Challenge paper describes DynaDoc, an automated documentation system for on-demand context-specific documentation. A key novelty is the use of graph database technology with an eXtensible Common Software Graph Schema (XCSG). Using XCSG-based query language, DynaDoc can mine efficiently and accurately a variety of program artifacts and graph abstractions from millions of lines of code to provide semantically rich documentation. DynaDoc leverages the extensibility of XCSG to link program artifacts to supplementary information such as commits and issues.</p>
-</div>
+## 🧠 Automated On-Demand Context-Specific Documentation  
+**Authors:** Ahmed Tamrawi, Sharwan Ram, Payas Awadhutkar, Ganesh Ram Santhanam, Benjamin Holland, Suresh Kothari  
+**Venue:** [IEEE ICSME 2018 – DySDoc3, Madrid, Spain](https://dysdoc.github.io/dysdoc3/index.html)  
+🏆 *Received Best Challenge Entry Award*  
 
+**Abstract:**  
+DynaDoc is an automated documentation system for on-demand, context-specific documentation.  
+It leverages **graph database technology** with an **eXtensible Common Software Graph Schema (XCSG)** to efficiently mine program artifacts and link them to commits, issues, and other metadata.  
+This approach enables semantically rich documentation for millions of lines of source code, enhancing software comprehension and developer productivity.
 
-- <a name="ICSME-2018"></a>Suresh Kothari, Ganesh Ram Santhanam, Payas Awadhutkar, Benjamin Holland, Jon Mathews, Ahmed Tamrawi. **Catastrophic Cyber-Physical Malware** a book Chapter in the *[Springer International Publishing, 2018](https://link.springer.com/book/10.1007/978-3-319-97643-3)*. <br/>
-**Tutorial:**&nbsp;[<a href="https://link.springer.com/chapter/10.1007/978-3-319-97643-3_7" class="toggle-abstract">Abstract</a>]
- <div class="abstract"><p>With the advent of highly sophisticated cyber-physical malware (CPM) such as Industroyer, a cyberattack could be destructive, and it would virtually paralyze the nation. The book chapter discusses as the major risks the vulnerability of: telecommunication infrastructure, industrial control systems (ICS), and mission-critical software. I was involed in many discussions and provided feedback. </p>
-</div>
+📄 [IEEE Publication Link](https://ieeexplore.ieee.org/document/8530110) · [GitHub Repository](https://github.com/EnSoftCorp/DynaDoc)
+
+---
+
+## 🔒 Catastrophic Cyber-Physical Malware  
+**Authors:** Suresh Kothari, Ganesh Ram Santhanam, Payas Awadhutkar, Benjamin Holland, Jon Mathews, Ahmed Tamrawi  
+**Book Chapter:** [Springer International Publishing (2018)](https://link.springer.com/book/10.1007/978-3-319-97643-3)  
+
+**Abstract:**  
+This chapter discusses the rise of **cyber-physical malware (CPM)**, such as Industroyer, and its potential to cause catastrophic disruptions across industrial control systems, telecommunications, and mission-critical infrastructure.  
+I participated in key discussions and contributed technical feedback on the intersection of software vulnerability analysis and ICS resilience.  
+
+📘 [Read Chapter Abstract](https://link.springer.com/chapter/10.1007/978-3-319-97643-3_7)
+
+---
+
+<em>These research projects laid the foundation for my focus on <strong>AI-driven documentation systems</strong> and <strong>security analytics</strong>, directly influencing my current work in <strong>data, compliance, and product security engineering</strong>.</em>

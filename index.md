@@ -1,52 +1,67 @@
 ---
 layout: default
-title: Sharwan Ram - Senior Software Engineer
+title: Home
 ---
 
-<div class="container">
+<header>
+  <h1>Sharwan Ram</h1>
+  <p class="lead">
+    Senior Software Engineer | Data & Security Engineering | Cloud, AI & Compliance Platforms<br>
+    AWS Certified Solutions Architect – Professional | AWS Certified Developer – Associate | CompTIA PenTest+
+  </p>
+</header>
 
-<h1>Sharwan Ram</h1>
+---
 
-<p class="lead">
-Senior Software Engineer | Data & Security Engineering | Cloud & AI-Driven Platforms<br>
-AWS Certified Solutions Architect – Professional | AWS Certified Developer – Associate
-</p>
-
-<h2>About Me</h2>
-
-<p>
-AWS Certified Senior Software Engineer with 6+ years of experience across Data Engineering, Cloud Security, Product Security and AI-driven Automation. At <a href="https://www.garmin.com/">Garmin International</a>, I design and optimize secure, high-performance data pipelines that unify telemetry, SBOM, and compliance datasets on AWS and Databricks, powering enterprise analytics and governance.
-</p>
+## 👋 About Me
 
 <p>
-Previously, Sharwan contributed to advanced software-analysis projects at <a href="http://ensoftcorp.com/">EnSoft Corp</a> and served as a Software Developer and Security Analyst on <a href="http://www.darpa.mil/program/space-time-analysis-for-cybersecurity">DARPA's Space/Time Analysis for Cybersecurity (STAC)</a> program at <a href="http://iastate.edu">Iowa State University</a>.
+I’m an AWS Certified Solutions Architect – Professional and CompTIA PenTest+ certified Senior Software Engineer with 6+ years of experience bridging <strong>Data Engineering, Cloud Security, and Product Security</strong>.  
+At <a href="https://www.garmin.com/">Garmin International</a>, I architect and automate secure data pipelines integrating <strong>telemetry, SBOM, and compliance datasets</strong> across AWS and Databricks, enabling analytics, auditability, and <strong>CRA / EU RED readiness</strong>.
 </p>
 
 <p>
-Passionate about bridging data engineering and product security, I deliver cloud-native, AI-powered, and compliant platforms that enhance reliability, visibility, and innovation at scale.
+Previously, I developed scalable analytics frameworks at <a href="https://ensoftcorp.com/">EnSoft Corp</a> and contributed to <a href="https://www.darpa.mil/program/space-time-analysis-for-cybersecurity">DARPA’s Space/Time Analysis for Cybersecurity (STAC)</a> program at <a href="https://www.iastate.edu/">Iowa State University</a>, where I co-authored award-winning research in static analysis and machine learning–based vulnerability detection.
 </p>
 
-<h2>Technical Expertise</h2>
+<p>
+Passionate about uniting <strong>Data Engineering, AI, and Product Security</strong>, I build <strong>cloud-native, GenAI-powered, and compliance-ready platforms</strong> that transform security data into intelligence—driving resilience, automation, and innovation at scale.
+</p>
 
-<p><strong>Data Engineering & Analytics</strong><br>
-Python (Pandas, PySpark), SQL, Databricks, Spark, Glue, Redshift, EMR, Athena, Tableau, Delta Lake, Airflow</p>
+---
 
-<p><strong>Cloud Platforms</strong><br>
-AWS (S3, Lambda, RDS, Step Functions, CloudFormation, IAM), Azure (Databricks, Blob Storage)</p>
+## ⚙️ Core Expertise
 
-<p><strong>AI & ML</strong><br>
-AWS Bedrock, SageMaker, OpenAI APIs, LangChain, Vector DBs (Pinecone, FAISS), NLP Automation</p>
+**Data & Cloud Engineering:**  
+Python (Pandas, PySpark) · SQL · Databricks · Spark · AWS (Glue | S3 | Redshift | Lambda | Step Functions | CloudFormation | IAM | EMR | Athena | RDS) · Delta Lake · Airflow · Tableau · Azure (Databricks | Blob Storage)
 
-<p><strong>Security & Compliance</strong><br>
-SBOM, CycloneDX, Vulnerability Analytics, Metadata Pipelines, Governance & Lineage, Regulatory Compliance (EU RED / CRA)</p>
+**AI & Machine Learning:**  
+GenAI (Bedrock | OpenAI APIs | LangChain) · SageMaker · Vector DBs (Pinecone | FAISS) · NLP Automation · AI Model Simulation · ML Pipeline Automation
 
-<p><strong>DevOps & Automation</strong><br>
-Git, Jenkins, Docker, CI/CD Pipelines, JIRA, Jupyter Notebooks</p>
+**Security & Compliance:**  
+SBOM (CycloneDX) · SAST Automation · Vulnerability Analytics · Metadata Pipelines · Governance & Lineage · EU RED / CRA Reporting · Cloud Security Controls · Regulatory Compliance Frameworks
 
-<p><strong>Data Architecture</strong><br>
-ETL/ELT Design, Data Lakes, Warehousing, Modeling, Data Quality & Access Control</p>
+**DevOps, Programming & Architecture:**  
+ETL/ELT Design · Data Lakes & Warehousing · Modeling · Data Quality & Access Control · Git · Jenkins · Docker · CI/CD Pipelines · JIRA · Jupyter Notebooks · Shell · Java · C/C++ · Data Structures
 
-<p><strong>Programming</strong><br>
-Python, Java, C/C++, SQL, Shell</p>
+---
 
-</div>
+## 🏆 Recognitions & Certifications
+
+- 🥇 **Data & AI Innovation Award (2024)** – Garmin International, for leading GenAI-driven compliance automation.  
+- 🛡️ **Compliance Excellence Award (2024)** – Garmin International, for enabling continuous EU RED / CRA product readiness.  
+- 💻 **AWS Certified Solutions Architect – Professional** (Active)  
+- 💻 **AWS Certified Developer – Associate** (Active)  
+- 🔐 **CompTIA PenTest+** (Active)  
+- 🧠 **Top Performer (2018)** – DARPA STAC Program, Iowa State University  
+- 🧩 **Best Challenge Entry Award (2018)** – IEEE DySDoc3, Madrid, Spain  
+
+---
+
+## 🌐 Connect with Me
+
+📍 Jaipur, India | Open to Relocation & Hybrid/Remote  
+📧 [srvnforensoft@gmail.com](mailto:srvnforensoft@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/shrawanram) · [GitHub](https://github.com/ramsrvn) · [Portfolio](https://shrawanram.com)
+
+---

@@ -18,7 +18,7 @@ avatar: https://raw.githubusercontent.com/ramsrvn/ramsrvn.github.io/master/image
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: sharwan@iastate.edu
+  email: srvnforensoft@gmail.com
   facebook:
   flickr:
   github: ramsrvn
@@ -83,6 +83,21 @@ exclude:
     - .gitignore
     - .DS_Store
     - Thumbs.db
+
+# Navigation links for site header
+nav_links:
+  - title: "Home"
+    url: /
+  - title: "Experience"
+    url: /experience/
+  - title: "Projects"
+    url: /projects/
+  - title: "Publications"
+    url: /publications/
+  - title: "Certifications"
+    url: /certifications/
+  - title: "Resources"
+    url: /resources/
 
 # Include the following files and directories
 include:
